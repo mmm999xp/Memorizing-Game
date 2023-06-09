@@ -1,0 +1,97 @@
+/* 標頭區 */
+#header {
+  display: flex;
+  margin: 0 auto; 
+  flex-direction:column;
+  width:90%;
+  align-items:flex-end;
+}
+
+#header .title{
+  width:100%;
+  display: flex;
+  justify-content:flex-end;
+}
+#header .title img{
+max-width: 5em; 
+}
+#header .title h2{
+padding-left: 0.5em;
+}
+
+#header .score{
+  margin:0px;
+  color: #342179;
+}
+#header .triedTimes{
+  margin-top:0px;
+}
+
+/* 遊戲牌桌區 */
+#cards {
+  display:flex;
+  flex-wrap: wrap;/*超過寬度換行，不下這道指令的話flex預設是nowrap*/
+  width: 90%;
+  margin:0 auto;
+}
+
+/* 牌桌(外部)上的排版，共有4列(row) ，每列有13欄(column) */
+
+.card {
+  margin:2px;/*卡片間距*/
+  box-sizing: border-box; /* 設定 box-sizing為border-box之後，代表計算寬度7%時連同content本身的寬高及padding和border三層一同加總，其總合為設定的7%視窗大小，若未設定，預設的顯示方式為內容佔7%，還要加上padding和border*/
+  flex: 7% 1 1; 
+  /* 
+  css中的flex:為flex-basis、flex-grow、flex-shrink的縮寫。
+  flex-basis: 7% ＞＞＞代表分配的寬度，代表每個項目佔此容器7%寬度。
+  flex-grow: 0　＞＞＞ 如何分配剩餘空間，設定0代表不分配剩餘空間，此處0並非布林值，而是一個比例權重。
+  flex-shrink: 1　＞＞＞ 當視窗空間縮小不足時項目該如何收縮，設定1代表等比例收縮，此處1並非布林值，而是一個比例權重。
+  */
+  height: 8vw; /* 代表視窗高度的8% */
+  border: 2px solid #e0e0e0 ;
+/* 牌面(內部)上的排版 左上正向的數字 右下反向的數字 中間花色 */
+  display: flex;
+  flex-direction :column; /*改變主軸為由上到下*/
+  justify-content:space-around; /*使元素聚集在中央，並均分留白間隔*/
+}
+
+.card img {
+  max-width: 30%;
+  align-self: center;
+  /* 調整元素在交錯軸的位置，card主軸為column(由上到下)，其交錯軸為row(由左到右)，所以設定成由左到右的中間 */
+}
+
+.card p {
+margin:3px;/*瀏覽器預設給p的margin比較大，所以改小一點*/
+font-size:15px;
+}
+
+/* 選出最後一個p的css 旋轉其角度 */
+.card p:last-child {
+transform: rotate(180deg);
+}
+
+/*牌背樣式*/
+
+.back{
+  background: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+  background-size: cover; /*cover會覆蓋整張卡牌*/
+}
+.paired {
+  background-color: #dae0e3;
+}
+
+
+/* 動畫 */
+@keyframes wrongAnimation {
+  to {
+    border :2px solid #ffd54f;
+  }
+}
+
+/* 調用動畫CSS，只需加入此CSS就可以新增動畫 */
+.wrong {
+ animation-name: wrongAnimation ; /* 動畫名稱 */
+ animation-duration:  0.2s; /* 動畫秒數 */
+ animation-iteration-count: 5 ; /* 動畫重播次數 */
+}
